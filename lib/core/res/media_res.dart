@@ -11,11 +11,6 @@ class MediaRes {
 
 // Icons
   static const userDefault = '$_baseIcons/user_default.png';
-  static const scoreBoard = '$_baseIcons/score_board.png';
-  static const microscope = '$_baseIcons/microscope-icon.png';
-  static const videos = '$_baseIcons/videos.png';
-  static const materials = '$_baseIcons/materials.png';
-  static const exams = '$_baseIcons/exams.png';
 
 // vectors
   static const casualReading = '$_baseVectors/casual_reading.png';

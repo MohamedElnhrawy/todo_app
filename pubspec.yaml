@@ -38,14 +38,13 @@ dependencies:
   flutter_bloc: ^8.1.6
   dartz: ^0.10.1
   equatable: ^2.0.5
-  file_picker: ^8.1.1
   font_awesome_flutter: ^10.7.0
   get_it: ^7.7.0
   cupertino_icons: ^1.0.6
   iconly: ^1.0.1
   image_picker: ^1.1.2
   intl: ^0.19.0
-  lottie: ^3.0.0
+  lottie: ^3.1.2
   open_file: ^3.3.2
   path_provider: ^2.1.4
   provider: ^6.1.2
@@ -53,15 +52,15 @@ dependencies:
   smooth_page_indicator: ^1.2.0+3
   swipe_to: ^1.0.6
   url_launcher: ^6.3.0
-  youtube_metadata: ^1.0.1
   video_thumbnail: ^0.5.3
   chewie: ^1.8.3
-  firebase_core: ^2.24.2
-  firebase_auth: ^4.16.0
-  cloud_firestore: ^4.14.0
-  firebase_storage: ^11.6.0
-  firebase_ui_auth: ^1.7.0
+  firebase_core: ^3.4.0
+  firebase_auth: ^5.2.0
+  cloud_firestore: ^5.3.0
+  firebase_storage: ^12.2.0
   uuid: ^4.4.2
+  flutter_localizations:
+    sdk: flutter
 
 dev_dependencies:
   flutter_test:
@@ -72,21 +71,23 @@ dev_dependencies:
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
-  flutter_lints: ^3.0.0
+  flutter_lints: ^4.0.0
   bloc_test: ^9.1.7
   mocktail: ^1.0.4
   very_good_analysis: ^6.0.0
+  firebase_auth_mocks: ^0.14.0
+  google_sign_in_mocks: ^0.3.0
+  fake_cloud_firestore: ^3.0.2
+  firebase_storage_mocks: ^0.7.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
 # The following section is specific to Flutter packages.
 flutter:
-
-  # The following line ensures that the Material Icons font is
-  # included with your application, so that you can use the icons in
-  # the material Icons class.
   uses-material-design: true
+  generate: true
+
 
   # To add assets to your application, add an assets section, like this:
   assets:

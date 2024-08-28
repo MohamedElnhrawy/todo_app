@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todo_app/core/extensions/context_extension.dart';
 import 'package:todo_app/core/res/colours.dart';
 
 class CustomField extends StatelessWidget {
@@ -37,12 +38,12 @@ class CustomField extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        (fieldTitle != null)
+        (fieldTitle != null || required)
             ? Padding(
                 padding: const EdgeInsets.only(left: 10, bottom: 10),
                 child: RichText(
                   text: TextSpan(
-                    text: fieldTitle!,
+                    text: fieldTitle ?? (required? hintText : ''),
                     style: const TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 14,
@@ -71,7 +72,7 @@ class CustomField extends StatelessWidget {
               : (value) {
                   if (!required) return null;
                   if (value == null || value.isEmpty) {
-                    return 'field is required';
+                    return context.l10n.required_field;
                   }
                   return validator?.call(value);
                 },
@@ -99,7 +100,7 @@ class CustomField extends StatelessWidget {
             suffixIcon: suffixIcon,
             hintText: hintText,
             hintStyle: hintStyle ??
-                const TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+                const TextStyle(fontSize: 12, fontWeight: FontWeight.w400),
           ),
         ),
       ],

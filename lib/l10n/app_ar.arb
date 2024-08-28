@@ -1,0 +1,18 @@
+{
+"@@locale": "ar",
+"sign_in" : "تسجيل الدخول",
+"sign_in_header" : "...تسجيل الدخول لحسابك",
+"sign_up_header" : "انشاء حساب جديد",
+"sign_up" : "انشاء حساب",
+"register_new_account" : "تسجيل حساب جديد؟",
+"already_have_account" : "لديك حساب بالفعل؟",
+"email":"البريد الالكترونى",
+"password":"كلمه السر",
+"full_name": "الاسم",
+"confirm_password":"تاكيد كلمه السر",
+"password_not_match": "كلمه السر غير متطابقه",
+"language" : "العربيه",
+"app_name" : "App",
+"required_field" : "حقل مطلوب"
+
+}
