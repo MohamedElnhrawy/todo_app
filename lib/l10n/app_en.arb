@@ -4,7 +4,7 @@
 "sign_in_header" : "Sign In to your account..",
 "sign_up_header" : "Register new account..",
 "sign_up" : "Sign Up",
-"register_account" : "Register New Account?",
+"register_new_account" : "Register New Account?",
 "already_have_account" : "Already have account?",
 "email":"Email Address",
 "password":"Password",
@@ -13,6 +13,9 @@
 "password_not_match": "Password not match",
 "language" : "English",
 "app_name" : "App",
-"required_field" : "Required Field"
+"required_field" : "Required Field",
+"tasks" : "Tasks",
+"add" : "Add",
+"profile" : "Profile"
 
 }

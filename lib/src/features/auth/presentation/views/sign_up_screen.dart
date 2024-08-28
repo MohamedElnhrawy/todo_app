@@ -13,6 +13,7 @@ import 'package:todo_app/core/utils/core_utils.dart';
 import 'package:todo_app/src/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:todo_app/src/features/auth/presentation/views/sign_in_screen.dart';
 import 'package:todo_app/src/features/auth/presentation/widgets/sign_up_form.dart';
+import 'package:todo_app/src/features/dashboard/presentation/views/dashboard.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -47,8 +48,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
           }else if (state is CachingError) {
             CoreUtils.showSnakeBar(context, state.message);
           }else if(state is UserLoggedInCached || (state is UserLoggedInStatus && state.status)){
-            //TODO(PUSH HOME SCREEN)
-            Navigator.pushReplacementNamed(context, "Dashboard.routeName");
+            Navigator.pushReplacementNamed(context, Dashboard.routeName);
           }
         },
         builder: (context, state) {

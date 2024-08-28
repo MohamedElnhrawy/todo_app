@@ -13,6 +13,9 @@
 "password_not_match": "كلمه السر غير متطابقه",
 "language" : "العربيه",
 "app_name" : "App",
-"required_field" : "حقل مطلوب"
+"required_field" : "حقل مطلوب",
+"tasks" : "المهام",
+"add" : "أضف",
+"profile" : "الملف الشخصى"
 
 }

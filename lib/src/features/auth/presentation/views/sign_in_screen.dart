@@ -11,6 +11,7 @@ import 'package:todo_app/core/res/media_res.dart';
 import 'package:todo_app/core/utils/core_utils.dart';
 import 'package:todo_app/src/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:todo_app/src/features/auth/presentation/widgets/sign_in_form.dart';
+import 'package:todo_app/src/features/dashboard/presentation/views/dashboard.dart';
 
 import 'sign_up_screen.dart';
 
@@ -41,8 +42,7 @@ class _SignInScreenState extends State<SignInScreen> {
           }if (state is CachingError) {
             CoreUtils.showSnakeBar(context, state.message);
           }else if(state is UserLoggedInCached || (state is UserLoggedInStatus && state.status)){
-            //TODO(PUSH HOME SCREEN)
-            Navigator.pushReplacementNamed(context, "Dashboard.routeName");
+            Navigator.pushReplacementNamed(context, Dashboard.routeName);
           }
 
           else if (state is SignedInSuccess) {
@@ -86,7 +86,7 @@ class _SignInScreenState extends State<SignInScreen> {
                                     .pushReplacementNamed(SignUpScreen.routeName);
                               },
                               child:  Text(
-                                context.l10n.register_account,
+                                context.l10n.register_new_account,
                               ),
                             ),
                           ),

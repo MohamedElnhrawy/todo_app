@@ -5,6 +5,7 @@ import 'package:todo_app/core/common/app/providers/tab_navigator.dart';
 import 'package:todo_app/core/common/app/providers/user_provider.dart';
 import 'package:todo_app/src/features/auth/domain/entities/user.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:todo_app/src/features/dashboard/presentation/providers/dashboard_controller.dart';
 
 extension ContectEx on BuildContext {
   ThemeData get theme => Theme.of(this);
@@ -21,6 +22,9 @@ extension ContectEx on BuildContext {
   LocalUser? get currentUser => userProvider.user;
 
   AppLocalizations get l10n => AppLocalizations.of(this);
+
+  DashboardController get dashBoardController => read<DashboardController>();
+
 
   void pop() => tabNavigator.pop();
   void popToRoot() => tabNavigator.popToRoot();

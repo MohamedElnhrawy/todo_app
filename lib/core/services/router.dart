@@ -10,6 +10,7 @@ import 'package:todo_app/src/features/auth/domain/entities/user.dart';
 import 'package:todo_app/src/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:todo_app/src/features/auth/presentation/views/sign_in_screen.dart';
 import 'package:todo_app/src/features/auth/presentation/views/sign_up_screen.dart';
+import 'package:todo_app/src/features/dashboard/presentation/views/dashboard.dart';
 
 Route<dynamic> generateRoute(RouteSettings settings) {
   switch (settings.name) {
@@ -25,7 +26,7 @@ Route<dynamic> generateRoute(RouteSettings settings) {
               fullName: user.displayName ?? '',
               lastDataSync: null);
           context.userProvider.initUser(currentUser);
-          return const PageUnderConstruction(); // TODO(Change to Home)
+          return const Dashboard();
         }
         return BlocProvider(
           create: (_) => sl<AuthBloc>(),
@@ -49,6 +50,10 @@ Route<dynamic> generateRoute(RouteSettings settings) {
                 child: const SignUpScreen(),
               ),
           settings: settings);
+
+    case Dashboard.routeName:
+      return _pageBuilder((_) => const Dashboard(), settings: settings);
+
 
     default:
       return _pageBuilder(

@@ -10,6 +10,7 @@ import 'package:todo_app/core/services/injection_container.dart';
 import 'package:todo_app/core/services/router.dart';
 import 'package:todo_app/firebase_options.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:todo_app/src/features/dashboard/presentation/providers/dashboard_controller.dart';
 
 
 Future<void> main() async {
@@ -32,6 +33,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => UserProvider()),
+        ChangeNotifierProvider(create: (_) => DashboardController()),
         ChangeNotifierProvider(create: (_) => LocaleProvider()),
       ],
       child: Builder(
