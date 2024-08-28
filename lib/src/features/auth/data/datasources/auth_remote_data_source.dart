@@ -107,19 +107,6 @@ class AuthRemoteDataSourceImpl extends AuthRemoteDataSource {
     }
   }
 
-  @override
-  Future<void> forgotPassword(String email) async {
-    try {
-      await _firebaseAuth.sendPasswordResetEmail(email: email);
-    } on FirebaseAuthException catch (e) {
-      throw ServerException(
-          message: e.message ?? 'error Occurred', statusCode: e.code);
-    } catch (e, s) {
-      debugPrintStack(stackTrace: s);
-      throw ServerException(message: e.toString(), statusCode: 505);
-    }
-  }
-
   // get user data from fire-store by uid
   Future<DocumentSnapshot<DataMap>> _getUserData(String uid) async {
     return await _firebaseFireStore.collection('users').doc(uid).get();
