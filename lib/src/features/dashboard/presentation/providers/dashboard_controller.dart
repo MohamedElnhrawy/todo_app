@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:todo_app/core/common/app/providers/tab_navigator.dart';
 import 'package:todo_app/core/common/views/persistent_view.dart';
 import 'package:todo_app/src/features/home/presentation/views/home_screen.dart';
-import 'package:todo_app/src/features/peofile/presentation/views/profile_screen.dart';
+import 'package:todo_app/src/features/profile/presentation/views/profile_screen.dart';
 
 class DashboardController extends ChangeNotifier {
   List<int> _indexHistory = [0];

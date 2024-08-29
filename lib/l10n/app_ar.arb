@@ -16,6 +16,14 @@
 "required_field" : "حقل مطلوب",
 "tasks" : "المهام",
 "add" : "أضف",
-"profile" : "الملف الشخصى"
+"profile" : "الملف الشخصى",
+"account":"الحساب",
+"change_language":"تغيير اللغة",
+"logout":"تسجيل الخروج",
+"confirmation":"تنبيه!",
+"change_language_message":"هل أنت متأكد أنك تريد تغيير اللغة!",
+"logout_message":"هل أنت متأكد أنك تريد تسجيل الخروج!",
+"ok":"تأكيد",
+"cancel":"إلغاء"
 
 }

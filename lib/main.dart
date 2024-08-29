@@ -1,9 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:todo_app/core/common/app/providers/locale_provider.dart';
+import 'package:todo_app/core/common/app/locale/presentation/providers/locale_provider.dart';
 import 'package:todo_app/core/common/app/providers/user_provider.dart';
-import 'package:todo_app/core/extensions/context_extension.dart';
 import 'package:todo_app/core/res/colours.dart';
 import 'package:todo_app/core/res/fonts.dart';
 import 'package:todo_app/core/services/injection_container.dart';
@@ -19,7 +18,7 @@ Future<void> main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-  await init();
+    await init();
 
   runApp(const MyApp());
 }
@@ -34,12 +33,12 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (_) => UserProvider()),
         ChangeNotifierProvider(create: (_) => DashboardController()),
-        ChangeNotifierProvider(create: (_) => LocaleProvider()),
+        ChangeNotifierProvider(create: (_) => sl<LocaleProvider>()),
       ],
-      child: Builder(
-        builder: (context) {
+      child: Consumer<LocaleProvider>(
+        builder: (context, localeProvider, child) {
           return MaterialApp(
-            locale: context.currentLocale.locale,
+            locale: localeProvider.locale,
             title: "TODO App",
             localizationsDelegates: AppLocalizations.localizationsDelegates,
             supportedLocales: AppLocalizations.supportedLocales,
@@ -50,12 +49,11 @@ class MyApp extends StatelessWidget {
               fontFamily: Fonts.poppins,
               appBarTheme: const AppBarTheme(
                 color: Colors.transparent,
-
               ),
             ),
             onGenerateRoute: generateRoute,
           );
-        }
+        },
       ),
     );
   }

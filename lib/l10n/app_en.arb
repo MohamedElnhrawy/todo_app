@@ -16,6 +16,15 @@
 "required_field" : "Required Field",
 "tasks" : "Tasks",
 "add" : "Add",
-"profile" : "Profile"
+"profile" : "Profile",
+"account":"Account",
+"change_language":"Change language",
+"logout":"Logout",
+
+"confirmation":"Confirmation!",
+"change_language_message":"Are you sure you want to change language!",
+"logout_message":"Are you sure you want to logout!",
+"ok":"Ok",
+"cancel":"Cancel"
 
 }

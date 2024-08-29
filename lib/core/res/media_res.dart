@@ -11,12 +11,10 @@ class MediaRes {
 
 // Icons
   static const userDefault = '$_baseIcons/user_default.png';
+  static const usIcon = '$_baseIcons/us.png';
+  static const egIcon = '$_baseIcons/eg.png';
 
 // vectors
-  static const casualReading = '$_baseVectors/casual_reading.png';
-  static const casualLife = '$_baseVectors/casual_life.png';
-  static const casualMeditationScience =
-      '$_baseVectors/casual_meditation_science.png';
 
 // Lottie
   static const pageUnderConstruction = '$_baseLottie/under_construction.json';
