@@ -37,6 +37,7 @@ Future<void> main() async {
     final result = await auth.signInWithCredential(credential);
     final user =  result.user;
     debugPrint(mockUser.displayName);
+    debugPrint(user?.displayName);
 
     storage = MockFirebaseStorage();
 

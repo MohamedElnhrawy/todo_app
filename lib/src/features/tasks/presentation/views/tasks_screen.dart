@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconly/iconly.dart';
@@ -24,9 +22,7 @@ class TasksScreen extends StatefulWidget {
 }
 
 class _TasksScreenState extends State<TasksScreen> {
-
   List<LocalTask>? tasks;
-
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +54,7 @@ class _TasksScreenState extends State<TasksScreen> {
         listener: (context, state) {
           if (state is TasksError) {
             CoreUtils.showSnakeBar(context, state.message);
-          }else if(state is FetchedTasks){
+          } else if (state is FetchedTasks) {
             setupWorkManager();
           }
         },
@@ -69,7 +65,7 @@ class _TasksScreenState extends State<TasksScreen> {
               tasks = snapshot.data
                 ?..sort((a, b) => b.createdAt.compareTo(a.createdAt));
 
-              if(tasks != null) {
+              if (tasks != null) {
                 context.read<TasksBloc>().add(TasksFetchedEvent(tasks!));
               }
 
@@ -78,24 +74,24 @@ class _TasksScreenState extends State<TasksScreen> {
                 child: Center(
                   child: (tasks != null && tasks!.isNotEmpty)
                       ? ListView.builder(
-                      itemCount: snapshot.data?.length ?? 0,
-                      itemBuilder: (_, index) {
-                        final task = tasks![index];
-                        return TaskTile(
-                            task: task,
-                            onCheckChange: (task) {
-                              final updatedTask = task.copyWith(
-                                  isCompleted: !task.isCompleted);
-                              context
-                                  .read<TasksBloc>()
-                                  .add(UpdateTaskEvent(updatedTask));
-                            });
-                      })
+                          itemCount: snapshot.data?.length ?? 0,
+                          itemBuilder: (_, index) {
+                            final task = tasks![index];
+                            return TaskTile(
+                                task: task,
+                                onCheckChange: (task) {
+                                  final updatedTask = task.copyWith(
+                                      isCompleted: !task.isCompleted);
+                                  context
+                                      .read<TasksBloc>()
+                                      .add(UpdateTaskEvent(updatedTask));
+                                });
+                          })
                       : Center(
-                    child: Lottie.asset(
-                      MediaRes.startAddingLottie,
-                    ),
-                  ),
+                          child: Lottie.asset(
+                            MediaRes.startAddingLottie,
+                          ),
+                        ),
                 ),
               );
             },
@@ -105,18 +101,16 @@ class _TasksScreenState extends State<TasksScreen> {
     );
   }
 
-
-
   void setupWorkManager() {
-      Workmanager().registerPeriodicTask(
-        AppConstants.taskID,
-        AppConstants.taskName,
-        existingWorkPolicy: ExistingWorkPolicy.append,
-        inputData: {},
-        constraints: Constraints(
-            networkType: NetworkType.connected, requiresStorageNotLow: false),
-        frequency: const Duration(minutes: 2),
-        initialDelay: const Duration(minutes: 1), // Delay for 10 seconds
-      );
+    Workmanager().registerPeriodicTask(
+      AppConstants.taskID,
+      AppConstants.taskName,
+      existingWorkPolicy: ExistingWorkPolicy.append,
+      inputData: {},
+      constraints: Constraints(
+          networkType: NetworkType.connected, requiresStorageNotLow: false),
+      frequency: const Duration(minutes: 2),
+      initialDelay: const Duration(minutes: 1), // Delay for 10 seconds
+    );
   }
 }

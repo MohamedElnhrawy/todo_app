@@ -104,7 +104,4 @@ class TaskModel extends HiveObject {
     isCompleted: isCompleted,
   );
 
-  @override
-  List<Object?> get props => [id];
-
 }
