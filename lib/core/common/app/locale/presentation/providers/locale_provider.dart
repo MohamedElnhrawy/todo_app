@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:todo_app/core/common/app/locale/domain/usecases/get_locale.dart';
 import 'package:todo_app/core/common/app/locale/domain/usecases/set_locale.dart';
+import 'package:todo_app/core/utils/constants.dart';
 
 class LocaleProvider extends ChangeNotifier {
   LocaleProvider({required GetLocale getLocale, required SetLocale setLocale})
@@ -12,12 +13,12 @@ class LocaleProvider extends ChangeNotifier {
 
   final GetLocale _getLocale;
   final SetLocale _setLocale;
-  late Locale _locale;
-
+  Locale _locale = const Locale(AppConstants.EN);
 
   Future<void> _initializeLocale() async {
     final result  = await _getLocale.call();
-    result.fold((_) {} , (value) => _locale = Locale(value));
+    result.fold((_) {
+    } , (value) => _locale = Locale(value));
     notifyListeners();
   }
 

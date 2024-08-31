@@ -28,6 +28,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         _checkUserLogin = checkUserLogin,
         super(const AuthInitial()) {
     on<AuthEvent>((event, emit) {
+      // for all events
       emit(const AuthLoading()); // for all event emit loading state
     });
 

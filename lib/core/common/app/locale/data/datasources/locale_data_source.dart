@@ -1,5 +1,6 @@
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:todo_app/core/errors/exceptions.dart';
+import 'package:todo_app/core/utils/constants.dart';
 abstract class LocaleDataSource {
   const LocaleDataSource();
   Future<void> setLocale(String locale);
@@ -25,7 +26,7 @@ class LocaleDataSourceImpl extends LocaleDataSource{
   @override
   Future<String> getLocale() {
     try{
-      return  Future.value(_prefs.getString(currentLanguage) ?? 'en');
+      return  Future.value(_prefs.getString(currentLanguage) ?? AppConstants.EN);
     }catch(e){
       throw CacheException(message: e.toString());
 

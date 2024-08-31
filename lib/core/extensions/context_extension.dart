@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo_app/core/common/app/locale/presentation/providers/locale_provider.dart';
 import 'package:todo_app/core/common/app/providers/tab_navigator.dart';
 import 'package:todo_app/core/common/app/providers/user_provider.dart';
+import 'package:todo_app/core/utils/constants.dart';
 import 'package:todo_app/src/features/auth/domain/entities/user.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:todo_app/src/features/dashboard/presentation/providers/dashboard_controller.dart';
@@ -21,6 +22,8 @@ extension ContectEx on BuildContext {
   LocaleProvider get currentLocale => read<LocaleProvider>();
 
    String get currentLanguage => currentLocale.locale.languageCode;
+
+   bool get isAR => currentLanguage == AppConstants.AR;
 
   LocalUser? get currentUser => userProvider.user;
 

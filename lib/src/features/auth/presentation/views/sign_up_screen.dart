@@ -8,7 +8,6 @@ import 'package:todo_app/core/common/widgets/gradient_background.dart';
 import 'package:todo_app/core/common/widgets/rounded_button.dart';
 import 'package:todo_app/core/extensions/context_extension.dart';
 import 'package:todo_app/core/res/fonts.dart';
-import 'package:todo_app/core/res/media_res.dart';
 import 'package:todo_app/core/utils/core_utils.dart';
 import 'package:todo_app/src/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:todo_app/src/features/auth/presentation/views/sign_in_screen.dart';
@@ -35,7 +34,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
-      backgroundColor: Colors.white,
       body: BlocConsumer<AuthBloc, AuthState>(
         listener: (context, state) {
           if (state is AuthError) {
@@ -53,7 +51,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
         },
         builder: (context, state) {
           return GradientBackground(
-            image: MediaRes.onBoardingBackground,
             child: SafeArea(
               child: Center(
                 child: ListView(

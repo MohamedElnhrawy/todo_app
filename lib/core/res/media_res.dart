@@ -7,7 +7,6 @@ class MediaRes {
   static const _baseVectors = 'assets/vectors';
 
   // Images
-  static const onBoardingBackground = '$_baseImages/onboarding.png';
 
 // Icons
   static const userDefault = '$_baseIcons/user_default.png';
@@ -17,5 +16,6 @@ class MediaRes {
 // vectors
 
 // Lottie
-  static const pageUnderConstruction = '$_baseLottie/under_construction.json';
+  static const pageUnderConstructionLottie = '$_baseLottie/under_construction.json';
+  static const startAddingLottie = '$_baseLottie/add_todo.json';
 }

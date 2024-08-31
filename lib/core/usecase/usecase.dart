@@ -10,3 +10,8 @@ abstract class UseCase<Type>{
   const UseCase();
   ResultFuture<Type> call();
 }
+
+abstract class UseCaseWithStream<Type>{
+  const UseCaseWithStream();
+  Stream<Type> listen();
+}

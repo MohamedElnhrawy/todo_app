@@ -7,10 +7,10 @@ import 'package:todo_app/core/extensions/context_extension.dart';
 import 'package:todo_app/core/res/colours.dart';
 import 'package:todo_app/core/res/media_res.dart';
 import 'package:todo_app/core/services/injection_container.dart';
+import 'package:todo_app/core/utils/constants.dart';
 import 'package:todo_app/core/utils/core_utils.dart';
 import 'package:todo_app/src/features/auth/data/datasources/cache_local_data_source.dart';
 import 'package:todo_app/src/features/auth/presentation/views/sign_in_screen.dart';
-import 'package:todo_app/src/features/profile/presentation/widgets/profile_header.dart';
 import 'package:todo_app/src/features/profile/presentation/widgets/profile_section_tile.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -18,26 +18,20 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final language = context.currentLanguage;
+    final language = context.isAR;
     return Scaffold(
       extendBodyBehindAppBar: true,
-      backgroundColor: Colors.white,
-      appBar: CustomAppBar(title: context.l10n.account),
+      appBar: CustomAppBar(title: context.currentUser?.fullName ?? context.l10n.account),
       body: GradientBackground(
-        image: MediaRes.onBoardingBackground,
         child: ListView(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
+          padding: const EdgeInsets.only(left: 0,right: 0,top: 0),
           children: [
-            const ProfileHeader(),
-            const SizedBox(
-              height: 30,
-            ),
             ProfileSectionTile(
               title: context.l10n.change_language,
               actionWidget: Image.asset(
                 width: 35,
                 height: 35,
-                language == 'ar' ? MediaRes.usIcon : MediaRes.egIcon,
+                language ? MediaRes.usIcon : MediaRes.egIcon,
               ),
               onTap: ()  {
                 CoreUtils.showCustomDialog(
@@ -50,7 +44,7 @@ class ProfileScreen extends StatelessWidget {
                       // change language
                       Navigator.of(context).pop();
                         context.currentLocale
-                            .setLocale(Locale(language == 'ar' ? 'en' : 'ar'));
+                            .setLocale(Locale(language ? AppConstants.EN : AppConstants.AR));
                     });
               },
             ),
@@ -76,6 +70,14 @@ class ProfileScreen extends StatelessWidget {
                     });
               },
             ),
+            Padding(
+              padding: const EdgeInsets.only(top: 20),
+              child: Divider(
+                  color: Colors.grey.withOpacity(.5),
+                  height: 1,
+                ),
+            ),
+
           ],
         ),
       ),

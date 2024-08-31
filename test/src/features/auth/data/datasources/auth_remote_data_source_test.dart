@@ -7,6 +7,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:google_sign_in_mocks/google_sign_in_mocks.dart';
 import 'package:todo_app/core/enums/update_user.dart';
+import 'package:todo_app/core/utils/constants.dart';
 import 'package:todo_app/src/features/auth/data/datasources/auth_remote_data_source.dart';
 
 Future<void> main() async {
@@ -56,7 +57,7 @@ Future<void> main() async {
     expect(auth.currentUser, isNotNull);
     expect(auth.currentUser!.displayName , tFullName);
     
-    final user = await fireStore.collection('users').doc(auth.currentUser!.uid).get();
+    final user = await fireStore.collection(AppConstants.storeUsersCollection).doc(auth.currentUser!.uid).get();
     expect(user.exists, isTrue);
 
   });
@@ -79,7 +80,7 @@ Future<void> main() async {
       // act
       await dataSource.updateUserData(action: UpdateUserAction.lastDataSync, userData: 'newDate');
 
-      final userData = await fireStore.collection('users').doc(auth.currentUser!.uid).get();
+      final userData = await fireStore.collection(AppConstants.storeUsersCollection).doc(auth.currentUser!.uid).get();
       debugPrint(userData.get('lastDataSync'));
       expect(userData.get('lastDataSync'), 'newDate');
     });

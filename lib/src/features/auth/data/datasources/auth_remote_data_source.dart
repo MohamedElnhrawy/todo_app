@@ -4,6 +4,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:todo_app/core/enums/update_user.dart';
 import 'package:todo_app/core/errors/exceptions.dart';
+import 'package:todo_app/core/utils/constants.dart';
 import 'package:todo_app/core/utils/typedefs.dart';
 import 'package:todo_app/src/features/auth/data/models/user.dart';
 
@@ -109,12 +110,12 @@ class AuthRemoteDataSourceImpl extends AuthRemoteDataSource {
 
   // get user data from fire-store by uid
   Future<DocumentSnapshot<DataMap>> _getUserData(String uid) async {
-    return await _firebaseFireStore.collection('users').doc(uid).get();
+    return await _firebaseFireStore.collection(AppConstants.storeUsersCollection).doc(uid).get();
   }
 
   Future<void> _setUserData(User user, String fallbackEmail) async {
     await _firebaseFireStore
-        .collection('users')
+        .collection(AppConstants.storeUsersCollection)
         .doc(user.uid)
         .set(UserModel(
       uid: user.uid,
@@ -126,7 +127,7 @@ class AuthRemoteDataSourceImpl extends AuthRemoteDataSource {
 
   Future<void> _updateUserData(DataMap data) async {
     await _firebaseFireStore
-        .collection('users')
+        .collection(AppConstants.storeUsersCollection)
         .doc(_firebaseAuth.currentUser?.uid)
         .update(data);
   }

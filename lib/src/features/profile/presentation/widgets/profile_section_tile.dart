@@ -14,39 +14,39 @@ class ProfileSectionTile extends StatelessWidget {
       onTap: onTap,
       child: Column(
         children: [
-          const SizedBox(
+           SizedBox(
             height: 30,
             child: Divider(
-              color: Colors.grey,
+              color: Colors.grey.withOpacity(.5),
               height: 1,
             ),
           ),
 
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            mainAxisSize: MainAxisSize.max,
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisSize: MainAxisSize.max,
 
-            children: [
-              Text(
-                title,
-                style: const TextStyle(
-                  fontSize: 18,
-                  color: Colours.neutralTextColor,
-                  fontWeight: FontWeight.w400,
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 8),
-                child: IconButton(
-                  icon: actionWidget,
-                  style: TextButton.styleFrom(
-                    padding: EdgeInsets.zero,
-                    splashFactory: NoSplash.splashFactory,
+              children: [
+                Text(
+                  title,
+                  style: const TextStyle(
+                    fontSize: 16,
+                    color: Colours.neutralTextColor,
+                    fontWeight: FontWeight.w700,
                   ),
-                  onPressed: onTap,
                 ),
-              ),
-            ],
+              IconButton(
+                    icon: actionWidget,
+                    style: TextButton.styleFrom(
+                      padding: EdgeInsets.zero,
+                      splashFactory: NoSplash.splashFactory,
+                    ),
+                    onPressed: onTap,
+                  ),
+              ],
+            ),
           ),
 
 

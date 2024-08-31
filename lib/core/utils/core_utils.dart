@@ -1,9 +1,12 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_datetime_picker_plus/flutter_datetime_picker_plus.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:todo_app/core/common/views/loader.dart';
 import 'package:todo_app/core/common/widgets/rounded_button.dart';
+import 'package:todo_app/core/extensions/context_extension.dart';
 import 'package:todo_app/core/res/colours.dart';
 
 class CoreUtils {
@@ -48,14 +51,17 @@ class CoreUtils {
     return null;
   }
 
-  static void showConfirmDialog({required BuildContext context,required String message,required String buttonTitle,required VoidCallback onPress}){
+  static void showConfirmDialog(
+      {required BuildContext context,
+      required String message,
+      required String buttonTitle,
+      required VoidCallback onPress}) {
     showDialog(
         context: context,
         builder: (BuildContext context) {
           return Dialog(
             shape: RoundedRectangleBorder(
-                borderRadius:
-                BorderRadius.circular(20.0)), //this right here
+                borderRadius: BorderRadius.circular(20.0)), //this right here
             child: SizedBox(
               height: 300,
               child: Padding(
@@ -63,29 +69,31 @@ class CoreUtils {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(message,style: const TextStyle(
-                      color: Colours.primaryColor,
-                      fontSize: 14,
-                      fontWeight: FontWeight.w400
-                    ),),
-                FittedBox(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      RoundedButton(
-                        onPressed: onPress,
-                        label: "",
+                    Text(
+                      message,
+                      style: const TextStyle(
+                          color: Colours.primaryColor,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w400),
+                    ),
+                    FittedBox(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          RoundedButton(
+                            onPressed: onPress,
+                            label: "",
+                          ),
+                          const SizedBox(
+                            width: 20,
+                          ),
+                          RoundedButton(
+                            onPressed: onPress,
+                            label: "",
+                          ),
+                        ],
                       ),
-                      const SizedBox(width: 20,),
-                      RoundedButton(
-                        onPressed: onPress,
-                        label: "",
-                      ),
-                    ],
-                  ),
-                )
-
-                    
+                    )
                   ],
                 ),
               ),
@@ -93,8 +101,6 @@ class CoreUtils {
           );
         });
   }
-
-
 
   static void showCustomDialog({
     required BuildContext context,
@@ -106,7 +112,6 @@ class CoreUtils {
     Color? action2Color,
     VoidCallback? action1,
     VoidCallback? action2,
-
   }) async {
     return showDialog<void>(
       context: context,
@@ -114,45 +119,83 @@ class CoreUtils {
       builder: (BuildContext context) {
         return AlertDialog(
           backgroundColor: Colors.white,
-          title: Center(child: Text(title,style: const TextStyle(color: Colours.primaryColor,fontWeight: FontWeight.w600,fontSize: 25),)),
+          title: Center(
+              child: Text(
+            title,
+            style: const TextStyle(
+                color: Colours.primaryColor,
+                fontWeight: FontWeight.w600,
+                fontSize: 25),
+          )),
           content: SingleChildScrollView(
             child: ListBody(
               children: <Widget>[
-                const SizedBox(height: 20,),
-                Text(message,style: const TextStyle(color: Colours.neutralTextColor,fontWeight: FontWeight.w400,fontSize: 18),),
-                const SizedBox(height: 20,),
+                const SizedBox(
+                  height: 20,
+                ),
+                Text(
+                  message,
+                  style: const TextStyle(
+                      color: Colours.neutralTextColor,
+                      fontWeight: FontWeight.w400,
+                      fontSize: 18),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
               ],
             ),
           ),
-
           actions: <Widget>[
             TextButton(
-              child: Text(action1Title,style: TextStyle(color: action1Color ?? Colours.redColor,fontSize: 14 ),),
+              child: Text(
+                action1Title,
+                style: TextStyle(
+                    color: action1Color ?? Colours.redColor, fontSize: 14),
+              ),
               onPressed: () {
-                if(action1 != null){
+                if (action1 != null) {
                   action1();
-                }else{
+                } else {
                   Navigator.of(context).pop();
                 }
-
-        }
-              ,
+              },
             ),
             TextButton(
-              child: Text(action2Title,style: TextStyle(color: action1Color ?? Colours.primaryColor,fontSize: 14 ),),
+                child: Text(
+                  action2Title,
+                  style: TextStyle(
+                      color: action1Color ?? Colours.primaryColor,
+                      fontSize: 14),
+                ),
                 onPressed: () {
-                  if(action2 != null){
+                  if (action2 != null) {
                     action2();
-                  }else{
+                  } else {
                     Navigator.of(context).pop();
                   }
-
-                }
-            ),
+                }),
           ],
         );
       },
     );
   }
+
+  static void showDateTimePicker({
+    required BuildContext context,
+    required void Function(DateTime) callBack,
+  }) {
+    DatePicker.showDateTimePicker(
+      context,
+      showTitleActions: true,
+      onConfirm: (date) {
+        callBack(date); // Pass the selected date and time to the callback
+      },
+      currentTime: DateTime.now(),
+      locale: context.isAR ? LocaleType.ar : LocaleType.en,
+    );
+  }
+
+
 
 }

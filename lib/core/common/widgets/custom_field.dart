@@ -17,7 +17,9 @@ class CustomField extends StatelessWidget {
       this.keyboardType,
       this.overrideValidator = false,
       this.hintStyle,
-      this.fieldTitle});
+      this.fieldTitle,
+      this.onTap,
+      });
 
   final String? Function(String?)? validator;
   final TextEditingController controller;
@@ -32,6 +34,7 @@ class CustomField extends StatelessWidget {
   final bool overrideValidator;
   final TextStyle? hintStyle;
   final String? fieldTitle;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -66,6 +69,7 @@ class CustomField extends StatelessWidget {
                 height: 0,
               ),
         TextFormField(
+          onTap: onTap,
           controller: controller,
           validator: overrideValidator
               ? validator
