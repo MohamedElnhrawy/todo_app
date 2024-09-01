@@ -131,6 +131,8 @@ test
    <img src="https://github.com/MohamedElnhrawy/todo_app/blob/master/images/Screenshot_20240901-044820.jpg?raw=true" height="400"/>
    <img src="https://github.com/MohamedElnhrawy/todo_app/blob/master/images/Screenshot_20240901-044843.jpg?raw=true" height="400"/>
    <img src="https://github.com/MohamedElnhrawy/todo_app/blob/master/images/Screenshot_20240901-044851.jpg?raw=true" height="400"/>
+   <img src="https://github.com/MohamedElnhrawy/todo_app/blob/master/images/Screen%20Shot%202024-09-01%20at%206.09.47%20AM.png?raw=true" height="400"/>
+   <img src="https://github.com/MohamedElnhrawy/todo_app/blob/master/images/Screen%20Shot%202024-09-01%20at%206.09.37%20AM.png?raw=true" height="400"/>
    </div>
   
 </div>
