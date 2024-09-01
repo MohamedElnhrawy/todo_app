@@ -34,5 +34,5 @@
   "empty_Data": "Start adding your TODO",
   "clear_all_tasks_message": "Are you sure you want to delete all Tasks!",
   "warning": "Warning!",
-  "clear_one_tasks_message": "Are you sure you want to delete :"
+  "clear_one_task_message": "Are you sure you want to delete :"
 }

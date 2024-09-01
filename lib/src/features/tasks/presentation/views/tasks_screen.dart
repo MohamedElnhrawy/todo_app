@@ -91,7 +91,7 @@ class _TasksScreenState extends State<TasksScreen> {
                                     context: context,
                                     title: context.l10n.warning,
                                     message:
-                                        '${context.l10n.clear_one_tasks_message} ${task.title}',
+                                        '${context.l10n.clear_one_task_message} ${task.title}',
                                     action1Title: context.l10n.cancel,
                                     action2Title: context.l10n.ok,
                                     action2: () async {
