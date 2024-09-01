@@ -123,8 +123,7 @@ class _TasksScreenState extends State<TasksScreen> {
       existingWorkPolicy: ExistingWorkPolicy.append,
       constraints: Constraints(
           networkType: NetworkType.connected, requiresStorageNotLow: false),
-      frequency: const Duration(minutes: 2),
-      initialDelay: const Duration(minutes: 1), // Delay for 10 seconds
+      frequency: const Duration(hours: 6),
     );
   }
 }
