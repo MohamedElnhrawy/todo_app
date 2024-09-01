@@ -11,6 +11,7 @@
 - [Architecture](#architecture)
 - [Folder Structure](#folder-structure)
 - [Testing](#testing)
+- [Images](#images)
 
 ## Features
 
@@ -51,7 +52,7 @@ Each feature is structured into three main layers:
 
 ### folder Structure
 
-```plaintext
+```plaintext 
 lib
 ├── core
 │   ├── common
@@ -81,10 +82,12 @@ lib
         └── tasks
             ├── data
             ├── domain
-            └── presentation
+            └── presentation    
+```            
 
-### testing            
+### testing
 
+```plaintext 
 test
 └── src
     └── features
@@ -97,9 +100,10 @@ test
             │ 
             └── presentation
                 └──  bloc
-                
+```                  
 
-     
+### images
+
 <div class="row">
   <div class="column">
    <img src="https://drive.google.com/file/d/18gnCdRch1C-aqjXM4GgH-UKasMlinvAx/view?usp=drive_link" height="400"/>
