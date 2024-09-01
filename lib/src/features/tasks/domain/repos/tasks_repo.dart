@@ -6,7 +6,7 @@ abstract class TasksRepo {
 
   Stream<List<LocalTask>> getTasks();
   VoidFuture addTask(LocalTask task);
-  VoidFuture deleteTask(int taskID);
+  VoidFuture deleteTask(String taskID);
   VoidFuture deleteAllTasks();
   VoidFuture updateTask(LocalTask task);
 }

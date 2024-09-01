@@ -43,7 +43,7 @@ class CustomField extends StatelessWidget {
       children: [
         (fieldTitle != null || required)
             ? Padding(
-                padding: const EdgeInsets.only(left: 10, bottom: 10),
+                padding: const EdgeInsets.only(left: 10, bottom: 10,right: 10),
                 child: RichText(
                   text: TextSpan(
                     text: fieldTitle ?? (required? hintText : ''),

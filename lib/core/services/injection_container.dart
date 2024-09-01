@@ -25,7 +25,6 @@ import 'package:todo_app/src/features/auth/domain/usecases/sign_up.dart';
 import 'package:todo_app/src/features/auth/domain/usecases/update_user.dart';
 import 'package:todo_app/src/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:todo_app/src/features/tasks/data/datesources/local_tasks_data_source.dart';
-import 'package:todo_app/src/features/tasks/data/datesources/tasks_remote_data_source.dart';
 import 'package:todo_app/src/features/tasks/data/models/task.dart';
 import 'package:todo_app/src/features/tasks/data/repos/tasks_repo_impl.dart';
 import 'package:todo_app/src/features/tasks/domain/repos/tasks_repo.dart';
@@ -103,8 +102,6 @@ Future<void> _initTasks() async {
   sl.registerLazySingleton<LocalTasksDataSource>(
       () => LocalTasksDataSourceImpl(box: box));
 
-  sl.registerLazySingleton<TasksRemoteDataSource>(
-      () => TasksRemoteDataSourceImpl(auth: sl(), fireStore: sl()));
 }
 
 Future<void> initHive() async {

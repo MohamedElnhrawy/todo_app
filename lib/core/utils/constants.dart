@@ -1,7 +1,7 @@
 class AppConstants{
   AppConstants._();
 
-  static const  String taskID = "1";
+  static const  String taskID = "syncTasksWithFirebase";
   static const  String taskName = "syncTasksWithFirebase";
 
 

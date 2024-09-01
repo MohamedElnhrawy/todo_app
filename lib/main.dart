@@ -46,25 +46,61 @@ void callbackDispatcher() {
           final box = Hive.box<TaskModel>(AppConstants.hiveBox);
           final tasks = box.values.toList();
 
-          for (final task in tasks) {
-            try {
+         // Fetch remote tasks to compare
+          final remoteTasksSnapshot = await fireStore
+              .collection(AppConstants.storeUsersCollection)
+              .doc(userId)
+              .collection(AppConstants.storeTasksCollection)
+              .get();
+
+          final remoteTasks = remoteTasksSnapshot.docs
+              .map((doc) => TaskModel.fromFireStore(doc.id, doc.data()))
+              .toList();
+
+          final remoteTasksMap = {for (var task in remoteTasks) task.id: task};
+
+          // Delete tasks in Firestore that are not in Hive
+          for (final remoteTaskId in remoteTasksMap.keys) {
+            if (!tasks.any((task) => task.id == remoteTaskId)) {
               await fireStore
                   .collection(AppConstants.storeUsersCollection)
                   .doc(userId)
                   .collection(AppConstants.storeTasksCollection)
-                  .doc(task.id)
-                  .set(task.toMap());
-              await showNotification(
-                  'Sync Successful', 'Task ${task.id} synced successfully.');
-            } catch (e) {
+                  .doc(remoteTaskId)
+                  .delete();
+
               if (kDebugMode) {
-                print('Failed to sync task ${task.id}: $e');
+                print('Deleted task $remoteTaskId from Firestore.');
               }
-              await showNotification(
-                  'Sync Failed', 'Failed to sync task ${task.id}.');
             }
           }
-          // }
+
+          // Update or add tasks in Firestore
+          for (final task in tasks) {
+            final remoteTask = remoteTasksMap[task.id];
+
+            if (remoteTask == null || task.updatedAt.isAfter(remoteTask.updatedAt)) {
+              try {
+                await fireStore
+                    .collection(AppConstants.storeUsersCollection)
+                    .doc(userId)
+                    .collection(AppConstants.storeTasksCollection)
+                    .doc(task.id)
+                    .set(task.toMap());
+                await showNotification(
+                    'Sync Successful', 'Task ${task.id} synced successfully.');
+                if (kDebugMode) {
+                  print('Synced task ${task.id} to Firestore.');
+                }
+              } catch (e) {
+                await showNotification(
+                    'Sync Failed', 'Failed to sync task ${task.id}.');
+                if (kDebugMode) {
+                  print('Failed to sync task ${task.id}: $e');
+                }
+              }
+            }
+          }
 
           await showNotification(
               'Sync Completed', 'All tasks have been synced with Firebase.');

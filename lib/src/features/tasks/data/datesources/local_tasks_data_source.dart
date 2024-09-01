@@ -10,7 +10,7 @@ abstract class LocalTasksDataSource {
   Future<void> addTask(LocalTask task);
 
   Stream<List<LocalTask>> getTasks();
-  Future<void> deleteTask(int taskID);
+  Future<void> deleteTask(String taskID);
   Future<void> deleteAllTasks();
   Future<void> updateTask(LocalTask task);
 }
@@ -62,7 +62,7 @@ class LocalTasksDataSourceImpl implements LocalTasksDataSource {
   }
 
   @override
-  Future<void> deleteTask(int taskID) async {
+  Future<void> deleteTask(String taskID) async {
     try {
 
       if (box.containsKey(taskID)) {

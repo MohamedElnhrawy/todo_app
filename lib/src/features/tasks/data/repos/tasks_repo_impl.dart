@@ -42,7 +42,7 @@ class TasksRepoImpl implements TasksRepo {
   }
 
   @override
-  VoidFuture deleteTask(int taskID)async {
+  VoidFuture deleteTask(String taskID)async {
     try {
         await  _dataSource.deleteTask(taskID);
         return const Right(null);

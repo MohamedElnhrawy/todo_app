@@ -33,6 +33,6 @@
   "submit": "حفظ",
   "empty_Data": "قائمة المهام الفارغة",
   "clear_all_tasks_message": "هل أنت متأكد أنك تريد حذف كافة المهام!",
-  "warning": "تنبيه!"
-
+  "warning": "تنبيه!",
+  "clear_one_task_message": "هل أنت متأكد أنك تريد حذف :"
 }

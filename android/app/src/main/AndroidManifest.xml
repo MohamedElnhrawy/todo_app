@@ -4,7 +4,7 @@
 
 
     <application
-        android:label="todo_app"
+        android:label="TODO"
         android:icon="@drawable/app_icon"
         android:name="${applicationName}"
         android:roundIcon="@drawable/app_icon"

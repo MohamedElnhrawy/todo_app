@@ -74,18 +74,33 @@ class _TasksScreenState extends State<TasksScreen> {
                 child: Center(
                   child: (tasks != null && tasks!.isNotEmpty)
                       ? ListView.builder(
-                          itemCount: snapshot.data?.length ?? 0,
+                          itemCount: tasks!.length,
                           itemBuilder: (_, index) {
                             final task = tasks![index];
                             return TaskTile(
-                                task: task,
-                                onCheckChange: (task) {
-                                  final updatedTask = task.copyWith(
-                                      isCompleted: !task.isCompleted);
-                                  context
-                                      .read<TasksBloc>()
-                                      .add(UpdateTaskEvent(updatedTask));
-                                });
+                              task: task,
+                              onCheckChange: (task) {
+                                final updatedTask = task.copyWith(
+                                    isCompleted: !task.isCompleted);
+                                context
+                                    .read<TasksBloc>()
+                                    .add(UpdateTaskEvent(updatedTask));
+                              },
+                              onDeleteTask: (task) {
+                                CoreUtils.showCustomDialog(
+                                    context: context,
+                                    title: context.l10n.warning,
+                                    message:
+                                        '${context.l10n.clear_one_tasks_message} ${task.title}',
+                                    action1Title: context.l10n.cancel,
+                                    action2Title: context.l10n.ok,
+                                    action2: () async {
+                                      Navigator.of(context).pop();
+                                      context.read<TasksBloc>().add(
+                                          DeleteTaskEvent(task.id));
+                                    });
+                              },
+                            );
                           })
                       : Center(
                           child: Lottie.asset(

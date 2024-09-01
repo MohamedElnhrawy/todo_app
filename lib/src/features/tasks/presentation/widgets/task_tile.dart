@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:iconly/iconly.dart';
 import 'package:intl/intl.dart';
 import 'package:todo_app/core/extensions/context_extension.dart';
 import 'package:todo_app/core/res/colours.dart';
@@ -9,11 +10,13 @@ class TaskTile extends StatelessWidget {
   const TaskTile({
     required this.task,
     required this.onCheckChange,
+    required this.onDeleteTask,
     super.key,
   });
 
   final LocalTask task;
   final void Function(LocalTask) onCheckChange;
+  final void Function(LocalTask) onDeleteTask;
 
   @override
   Widget build(BuildContext context) {
@@ -40,24 +43,33 @@ class TaskTile extends StatelessWidget {
                   onChanged: (_) => onCheckChange(task),
                   checkColor: Colors.white,
                   activeColor: Colours.primaryColor),
-              title: Padding(
-                padding: const EdgeInsets.only(bottom: 5, top: 3),
-                child: Text(
-                  task.title,
-                  style: TextStyle(
-                    color: task.isCompleted ? Colors.white : Colors.black,
-                    fontWeight: FontWeight.w700,
-                    fontSize: 20,
-                    decoration:
-                        task.isCompleted ? TextDecoration.lineThrough : null,
-                    decorationColor: Colors.white,
-                    decorationThickness: 2.0,
-                    decorationStyle: TextDecorationStyle.solid,
+              title: Row(
+                children: [
+                  Expanded(
+                    child: Text(
+                      task.title,
+                      style: TextStyle(
+                        color: task.isCompleted ? Colors.white : Colors.black,
+                        fontWeight: FontWeight.w700,
+                        fontSize: 20,
+                        decoration: task.isCompleted
+                            ? TextDecoration.lineThrough
+                            : null,
+                        decorationColor: Colors.white,
+                        decorationThickness: 2.0,
+                        decorationStyle: TextDecorationStyle.solid,
+                      ),
+                    ),
                   ),
-                ),
+                  IconButton(
+                      iconSize: 30,
+                      onPressed: () => onDeleteTask(task),
+                      icon: const Icon(
+                        IconlyLight.delete,
+                        color: Colors.black,
+                      ))
+                ],
               ),
-
-              /// Description of task
               subtitle: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -75,7 +87,6 @@ class TaskTile extends StatelessWidget {
                       decorationStyle: TextDecorationStyle.solid,
                     ),
                   ),
-
                   Align(
                     alignment: context.isAR
                         ? Alignment.centerLeft
