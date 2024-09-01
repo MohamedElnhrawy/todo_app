@@ -37,9 +37,6 @@ class SignedUpSuccess extends AuthState {
   const SignedUpSuccess();
 }
 
-class UserUpdated extends AuthState {
-  const UserUpdated();
-}
 
 class UserLoggedInCached extends AuthState {
   const UserLoggedInCached();

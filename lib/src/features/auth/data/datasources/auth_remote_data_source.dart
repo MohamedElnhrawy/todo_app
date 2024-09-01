@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:todo_app/core/enums/update_user.dart';
 import 'package:todo_app/core/errors/exceptions.dart';
 import 'package:todo_app/core/utils/constants.dart';
 import 'package:todo_app/core/utils/typedefs.dart';
@@ -19,8 +18,6 @@ abstract class AuthRemoteDataSource {
         required String email,
         required String password});
 
-  Future<void> updateUserData(
-      {required UpdateUserAction action, required dynamic userData});
 }
 
 class AuthRemoteDataSourceImpl extends AuthRemoteDataSource {
@@ -89,25 +86,6 @@ class AuthRemoteDataSourceImpl extends AuthRemoteDataSource {
     }
   }
 
-  @override
-  Future<void> updateUserData({
-    required UpdateUserAction action,
-    required dynamic userData,
-  }) async {
-    try {
-      switch (action) {
-        case UpdateUserAction.lastDataSync:
-          await _updateUserData({'lastDataSync': userData as String});
-      }
-    } on FirebaseException catch (e) {
-      throw ServerException(
-          message: e.message ?? 'error Occurred', statusCode: e.code);
-    } catch (e, s) {
-      debugPrintStack(stackTrace: s);
-      throw ServerException(message: e.toString(), statusCode: 505);
-    }
-  }
-
   // get user data from fire-store by uid
   Future<DocumentSnapshot<DataMap>> _getUserData(String uid) async {
     return await _firebaseFireStore.collection(AppConstants.storeUsersCollection).doc(uid).get();
@@ -121,14 +99,7 @@ class AuthRemoteDataSourceImpl extends AuthRemoteDataSource {
       uid: user.uid,
       email: user.email ?? fallbackEmail,
       fullName: user.displayName ?? '',
-      lastDataSync: null,
     ).toMap());
   }
 
-  Future<void> _updateUserData(DataMap data) async {
-    await _firebaseFireStore
-        .collection(AppConstants.storeUsersCollection)
-        .doc(_firebaseAuth.currentUser?.uid)
-        .update(data);
-  }
 }

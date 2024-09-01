@@ -7,7 +7,6 @@ class UserModel extends LocalUser {
     required super.uid,
     required super.email,
     required super.fullName,
-    super.lastDataSync,
   });
 
   const UserModel.empty()
@@ -15,7 +14,6 @@ class UserModel extends LocalUser {
           uid: '',
           email: '',
           fullName: '',
-          lastDataSync: null,
         );
 
   UserModel.fromMap(DataMap map)
@@ -23,20 +21,18 @@ class UserModel extends LocalUser {
             uid: map['uid'] as String,
             fullName: map['fullName'] as String,
             email: map['email'] as String,
-            lastDataSync: (map['lastDataSync'] as Timestamp?)?.toDate());
+  );
 
   @override
   UserModel copyWith({
     String? uid,
     String? email,
     String? fullName,
-    DateTime? lastDataSync,
   }) {
     return UserModel(
       uid: uid ?? this.uid,
       email: email ?? this.email,
       fullName: fullName ?? this.fullName,
-      lastDataSync: lastDataSync ?? this.lastDataSync,
     );
   }
 
@@ -46,7 +42,6 @@ class UserModel extends LocalUser {
       'uid': uid,
       'fullName': fullName,
       'email': email,
-      'lastDataSync': lastDataSync,
     };
   }
 }

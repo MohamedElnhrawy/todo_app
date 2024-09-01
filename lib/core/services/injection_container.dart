@@ -22,7 +22,6 @@ import 'package:todo_app/src/features/auth/domain/usecases/cache_user_login.dart
 import 'package:todo_app/src/features/auth/domain/usecases/check_user_login.dart';
 import 'package:todo_app/src/features/auth/domain/usecases/sign_in.dart';
 import 'package:todo_app/src/features/auth/domain/usecases/sign_up.dart';
-import 'package:todo_app/src/features/auth/domain/usecases/update_user.dart';
 import 'package:todo_app/src/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:todo_app/src/features/tasks/data/datesources/local_tasks_data_source.dart';
 import 'package:todo_app/src/features/tasks/data/models/task.dart';
@@ -59,12 +58,10 @@ Future<void> _initAuth() async {
   sl.registerFactory(() => AuthBloc(
       signIn: sl(),
       signUp: sl(),
-      updateUser: sl(),
       checkUserLogin: sl(),
       cacheUserLogin: sl()));
   sl.registerLazySingleton(() => SignIn(sl()));
   sl.registerLazySingleton(() => SignUp(sl()));
-  sl.registerLazySingleton(() => UpdateUser(sl()));
   sl.registerLazySingleton(() => CheckUserLogin(sl()));
   sl.registerLazySingleton(() => CacheUserLogin(sl()));
   sl.registerLazySingleton<AuthRepo>(

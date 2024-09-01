@@ -29,17 +29,7 @@ class SignUpEvent extends AuthEvent {
   List<Object?> get props => [email, password, fullName];
 }
 
-class UpdateUserDataEvent extends AuthEvent {
-  UpdateUserDataEvent({required this.action, required this.data})
-      : assert(data is String || data is File || data is DataMap,
-            "update data can't be [${data.runtimeType}]");
 
-  final UpdateUserAction action;
-  final dynamic data;
-
-  @override
-  List<Object?> get props => [action, data];
-}
 
 class CacheUserLoggedInEvent extends AuthEvent {
   const CacheUserLoggedInEvent(this.status);

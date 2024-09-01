@@ -24,7 +24,7 @@ Route<dynamic> generateRoute(RouteSettings settings) {
               uid: user.uid,
               email: user.email ?? '',
               fullName: user.displayName ?? '',
-              lastDataSync: null);
+              );
           context.userProvider.initUser(currentUser);
           return const Dashboard();
         }

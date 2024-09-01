@@ -6,7 +6,6 @@ import 'package:firebase_storage_mocks/firebase_storage_mocks.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:google_sign_in_mocks/google_sign_in_mocks.dart';
-import 'package:todo_app/core/enums/update_user.dart';
 import 'package:todo_app/core/utils/constants.dart';
 import 'package:todo_app/src/features/auth/data/datasources/auth_remote_data_source.dart';
 
@@ -73,17 +72,4 @@ Future<void> main() async {
 
   });
 
-  group('updateUser', (){
-    test('update lastDataSync', () async {
-      await auth.signOut();
-      await dataSource.signUp(fullName: tFullName, email: tEmail, password: tPassword);
-
-      // act
-      await dataSource.updateUserData(action: UpdateUserAction.lastDataSync, userData: 'newDate');
-
-      final userData = await fireStore.collection(AppConstants.storeUsersCollection).doc(auth.currentUser!.uid).get();
-      debugPrint(userData.get('lastDataSync'));
-      expect(userData.get('lastDataSync'), 'newDate');
-    });
-  });
 }

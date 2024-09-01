@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:todo_app/core/common/widgets/app_bar.dart';
@@ -12,6 +13,7 @@ import 'package:todo_app/core/utils/core_utils.dart';
 import 'package:todo_app/src/features/auth/data/datasources/cache_local_data_source.dart';
 import 'package:todo_app/src/features/auth/presentation/views/sign_in_screen.dart';
 import 'package:todo_app/src/features/profile/presentation/widgets/profile_section_tile.dart';
+import 'package:workmanager/workmanager.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -87,5 +89,14 @@ class ProfileScreen extends StatelessWidget {
   void logout() async {
     await sl<SharedPreferences>().setBool(isUserLoggedIn, false);
     await sl<FirebaseAuth>().signOut();
+    cancelWorkManagerTasks();
+  }
+
+  void cancelWorkManagerTasks() async {
+    // Cancel all tasks
+    await Workmanager().cancelAll();
+    if (kDebugMode) {
+      print('WorkManager tasks have been cancelled.');
+    }
   }
 }

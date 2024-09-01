@@ -121,7 +121,6 @@ class _TasksScreenState extends State<TasksScreen> {
       AppConstants.taskID,
       AppConstants.taskName,
       existingWorkPolicy: ExistingWorkPolicy.append,
-      inputData: {},
       constraints: Constraints(
           networkType: NetworkType.connected, requiresStorageNotLow: false),
       frequency: const Duration(minutes: 2),

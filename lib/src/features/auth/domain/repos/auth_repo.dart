@@ -1,4 +1,3 @@
-import 'package:todo_app/core/enums/update_user.dart';
 import 'package:todo_app/core/utils/typedefs.dart';
 import 'package:todo_app/src/features/auth/domain/entities/user.dart';
 
@@ -13,7 +12,5 @@ abstract class AuthRepo {
         required String email,
         required String password});
 
-  VoidFuture updateUserData(
-      {required UpdateUserAction action, required dynamic userData});
 
 }

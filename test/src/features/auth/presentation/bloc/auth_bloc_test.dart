@@ -8,14 +8,12 @@ import 'package:todo_app/src/features/auth/domain/usecases/cache_user_login.dart
 import 'package:todo_app/src/features/auth/domain/usecases/check_user_login.dart';
 import 'package:todo_app/src/features/auth/domain/usecases/sign_in.dart';
 import 'package:todo_app/src/features/auth/domain/usecases/sign_up.dart';
-import 'package:todo_app/src/features/auth/domain/usecases/update_user.dart';
 import 'package:todo_app/src/features/auth/presentation/bloc/auth_bloc.dart';
 
 class MockSignIn extends Mock implements SignIn {}
 
 class MockSignUp extends Mock implements SignUp {}
 
-class MockUpdateUser extends Mock implements UpdateUser {}
 
 class MockCheckUserLogin extends Mock implements CheckUserLogin {}
 
@@ -24,25 +22,21 @@ class MockCacheUserLogin extends Mock implements CacheUserLogin {}
 void main() {
   late SignIn signIn;
   late SignUp signUp;
-  late UpdateUser updateUser;
   late CheckUserLogin checkUserLogin;
   late CacheUserLogin cacheUserLogin;
   late AuthBloc authBloc;
 
   const tSignUpParams = SignUpParams.empty();
   const tSignInParams = SignInParams.empty();
-  const tUpdateUserParams = UpdateUserParams.empty();
 
   setUp(() {
     signIn = MockSignIn();
     signUp = MockSignUp();
-    updateUser = MockUpdateUser();
     checkUserLogin = MockCheckUserLogin();
     cacheUserLogin = MockCacheUserLogin();
     authBloc = AuthBloc(
         signIn: signIn,
         signUp: signUp,
-        updateUser: updateUser,
         checkUserLogin: checkUserLogin,
         cacheUserLogin: cacheUserLogin);
   });
@@ -50,7 +44,6 @@ void main() {
   setUpAll(() {
     registerFallbackValue(tSignUpParams);
     registerFallbackValue(tSignInParams);
-    registerFallbackValue(tUpdateUserParams);
   });
 
   tearDown(() => authBloc
@@ -105,44 +98,6 @@ final tCacheFailure =
     );
   });
 
-
-
-  group('updateUser', () {
-
-    // success case
-    blocTest<AuthBloc, AuthState>(
-      'should emit [AuthLoading, UserUpdated] when [UpdateUserDataEvent] triggered success',
-      build: () {
-        when(() => updateUser.call(any()))
-            .thenAnswer((_) async => const Right(null));
-
-        return authBloc;
-      },
-      act: (bloc) => bloc.add(UpdateUserDataEvent(action: tUpdateUserParams.action,data: tUpdateUserParams.userData)),
-      expect: () => [const AuthLoading(), const UserUpdated()],
-      verify: (_) {
-        verify(() => updateUser.call(tUpdateUserParams)).called(1);
-        verifyNoMoreInteractions(updateUser);
-      },
-    );
-
-    // fail case
-    blocTest<AuthBloc, AuthState>(
-      'should emit [AuthLoading, AuthError] when [UpdateUserDataEvent] triggered fail',
-      build: () {
-        when(() => updateUser.call(any()))
-            .thenAnswer((_) async =>  Left(tServerFailure));
-
-        return authBloc;
-      },
-      act: (bloc) => bloc.add(UpdateUserDataEvent(action: tUpdateUserParams.action,data: tUpdateUserParams.userData)),
-      expect: () => [const AuthLoading(),  AuthError(tServerFailure.errorMessage)],
-      verify: (_) {
-        verify(() => updateUser.call(tUpdateUserParams)).called(1);
-        verifyNoMoreInteractions(updateUser);
-      },
-    );
-  });
 
   group('signUp', () {
 

@@ -24,6 +24,7 @@ class SignUpForm extends StatefulWidget {
 
 class _SignInFormState extends State<SignUpForm> {
   bool obscurePassword = true;
+  bool obscureConfirmPassword = true;
 
   @override
   Widget build(BuildContext context) {
@@ -75,15 +76,15 @@ class _SignInFormState extends State<SignUpForm> {
               controller: widget.confirmPasswordController,
               hintText: context.l10n.confirm_password,
               keyboardType: TextInputType.visiblePassword,
-              obSecureText: obscurePassword,
+              obSecureText: obscureConfirmPassword,
               suffixIcon: IconButton(
                 onPressed: () {
                   setState(() {
-                    obscurePassword = !obscurePassword;
+                    obscureConfirmPassword = !obscureConfirmPassword;
                   });
                 },
                 icon: Icon(
-                  obscurePassword ? IconlyLight.show : IconlyLight.hide,
+                  obscureConfirmPassword ? IconlyLight.show : IconlyLight.hide,
                   color: Colors.grey,
                 ),
               ),
